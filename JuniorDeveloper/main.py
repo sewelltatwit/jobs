@@ -41,7 +41,15 @@ def decode_railroad(encoded_phrase):
     # hi name ryan
     # my is
     # how would you decode this?
-    return encoded_phrase
+    upper_track, lower_track = encoded_phrase.split("\r\n",1)
+    upper=upper_track.split()
+    lower=lower_track.split(" ")
+    decoded_phrase = ""
+    for x in range(len(upper)):
+        decoded_phrase+=upper[x] + " "
+        if len(lower)>x:
+            decoded_phrase+= lower[x]+" "
+    return decoded_phrase[:-1]
 
 def shuffle_letter(letter_to_shuffle, places_to_shuffle):
     # with places_to_shuffle = 1, a becomes b, b becomes c, etc.
@@ -80,3 +88,6 @@ if __name__ == '__main__':
     # end optional code
 
     # use the space below to decode secret_message
+    message=encode_railroad(secret_message)
+    output=decode_railroad(message)
+    print(output==secret_message)
