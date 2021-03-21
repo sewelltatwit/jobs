@@ -83,15 +83,23 @@ if __name__ == '__main__':
     secret_message = "gsrkvexypexmsrw! ohcl znoy wslhzl rwja@ktwdmzpwcvl.kwu aqwt jezsvmxi huk eua h wz rgtuqp. xzgojhy apwctl nv yurazout.\r\ndtz awtdml ydiiun. jrfnq xjui yurazout, mtggd, epmbpmz jan jha eph znk qnsj eh efwfmpqfs"
     # this code below is optional and not necessary for your solution, but may give you some insight as to how
     # the above message was encoded
-
+    
     # start optional code
-    message_to_be_encoded = '' # this message would have the same number of words as there are numbers in seed
+    message_to_be_encoded = 'one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty twentyone twentytwo twentythree twentyfour twentyfive twentysix twentyseven twentyeight twentynine thirty thirtyone' # this message would have the same number of words as there are numbers in seed
     encoded_message = encode_secret_message(message_to_be_encoded, seed)
     # end optional code
-
     # use the space below to decode secret_message
-    message=encode_railroad(secret_message)
-    output=decode_railroad(message)
-    print(output==secret_message)
+    message=decode_railroad(secret_message)
     
+    decoded_message = ""
+    i= 0
+    for word in message.split(" ")[:-1]:
+        _seed = int(seed[i])
+        _word = ""
+        for char in word:
+            _word += unshuffle_letter(char, _seed)
+            
+        decoded_message += "{} ".format(_word)
+        i += 1
+    print(decoded_message)
     
