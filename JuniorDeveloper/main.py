@@ -60,7 +60,9 @@ def shuffle_letter(letter_to_shuffle, places_to_shuffle):
 #fill out this method
 def unshuffle_letter(letter_to_decode, places_to_unshuffle):
     # how would you reverse the shuffle_letter function?
-    return letter_to_decode
+    if not letter_to_decode.isalpha():
+        return letter_to_decode
+    return chr((ord(letter_to_decode) - places_to_unshuffle - 97) % 26 + 97)
 
 def encode_secret_message(secret_message, seed):
     encoded_message = ""
@@ -91,3 +93,5 @@ if __name__ == '__main__':
     message=encode_railroad(secret_message)
     output=decode_railroad(message)
     print(output==secret_message)
+    
+    
